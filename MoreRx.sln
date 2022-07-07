@@ -5,7 +5,12 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoreRx", "MoreRx\MoreRx.csproj", "{8166E1AD-164E-4434-971F-50C45A417E9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreRx.Tests", "MoreRx.Tests\MoreRx.Tests.csproj", "{9ED1A0C9-104C-480C-AD6A-0EC840006BF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoreRx.Tests", "MoreRx.Tests\MoreRx.Tests.csproj", "{9ED1A0C9-104C-480C-AD6A-0EC840006BF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BECC6355-3572-4742-895E-2F077B38EECD}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
