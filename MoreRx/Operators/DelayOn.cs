@@ -21,13 +21,13 @@ namespace MoreRx
 
             return source
                 .DistinctUntilChanged()
-                .Select(b => b 
+                .Select(b => b
                     ? Observable.Timer(timeSpan, scheduler).Select(_ => true)
                     : Observable.Return(false, scheduler))
                 .Switch()
                 .DistinctUntilChanged();
         }
-        
+
         public static IObservable<TSource> DelayOn<TSource>(this IObservable<TSource> source, Func<TSource, bool> selector, TimeSpan timeSpan, IScheduler scheduler)
         {
             if (source is null)
@@ -43,7 +43,7 @@ namespace MoreRx
             return source
                 .Select(item => (item, state: selector(item)))
                 .DistinctUntilChanged(t => t.state)
-                .Select(t => t.state 
+                .Select(t => t.state
                     ? Observable.Timer(timeSpan, scheduler).Select(_ => t)
                     : Observable.Return(t, scheduler))
                 .Switch()

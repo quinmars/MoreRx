@@ -56,7 +56,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 241)
                 );
         }
-        
+
         [Fact]
         public void AfterLast()
         {
@@ -103,7 +103,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 290)
                 );
         }
-        
+
         [Fact]
         public void AfterCompletion()
         {
@@ -150,7 +150,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void FromBeginning()
         {
@@ -188,7 +188,7 @@ namespace MoreRx.Tests.Operators
             // because the hot observable is replaced
             // by an empty observable
         }
-        
+
         [Fact]
         public void BeforeFirst()
         {
@@ -226,7 +226,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 220)
                 );
         }
-        
+
         [Fact]
         public void AfterFirst()
         {

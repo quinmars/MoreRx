@@ -26,7 +26,7 @@ namespace MoreRx.Tests.Operators
                     OnNext(40, 104),
                     OnCompleted<int>(50)
                 );
-            
+
             var ys2 = scheduler.CreateColdObservable(
                     OnNext(10, 201),
                     OnNext(20, 202),
@@ -34,7 +34,7 @@ namespace MoreRx.Tests.Operators
                     OnNext(40, 204),
                     OnCompleted<int>(50)
                 );
-            
+
             var ys3 = scheduler.CreateColdObservable(
                     OnNext(10, 301),
                     OnNext(20, 302),
@@ -83,20 +83,20 @@ namespace MoreRx.Tests.Operators
                 .Equal(
                     Subscribe(220, 270)
                 );
-            
+
             ys2.Subscriptions
                 .Should()
                 .Equal(
                     Subscribe(280, 330)
                 );
-            
+
             ys3.Subscriptions
                 .Should()
                 .Equal(
                     Subscribe(340, 390)
                 );
         }
-        
+
         [Fact]
         public void OuterCompletes_WithOverlap()
         {
@@ -109,7 +109,7 @@ namespace MoreRx.Tests.Operators
                     OnNext(40, 104),
                     OnCompleted<int>(50)
                 );
-            
+
             var ys2 = scheduler.CreateColdObservable(
                     OnNext(10, 201),
                     OnNext(20, 202),
@@ -117,7 +117,7 @@ namespace MoreRx.Tests.Operators
                     OnNext(40, 204),
                     OnCompleted<int>(50)
                 );
-            
+
             var ys3 = scheduler.CreateColdObservable(
                     OnNext(10, 301),
                     OnNext(20, 302),
@@ -162,19 +162,19 @@ namespace MoreRx.Tests.Operators
                 .Equal(
                     Subscribe(220, 270)
                 );
-            
+
             ys2.Subscriptions
                 .Should()
                 .Equal(
                 );
-            
+
             ys3.Subscriptions
                 .Should()
                 .Equal(
                     Subscribe(270, 320)
                 );
         }
-        
+
         [Fact]
         public void InnerCompletes_NoOverlap()
         {
@@ -187,7 +187,7 @@ namespace MoreRx.Tests.Operators
                     OnNext(40, 104),
                     OnCompleted<int>(50)
                 );
-            
+
             var ys2 = scheduler.CreateColdObservable(
                     OnNext(10, 201),
                     OnNext(20, 202),
@@ -195,7 +195,7 @@ namespace MoreRx.Tests.Operators
                     OnNext(40, 204),
                     OnCompleted<int>(50)
                 );
-            
+
             var ys3 = scheduler.CreateColdObservable(
                     OnNext(10, 301),
                     OnNext(20, 302),
@@ -244,20 +244,20 @@ namespace MoreRx.Tests.Operators
                 .Equal(
                     Subscribe(220, 270)
                 );
-            
+
             ys2.Subscriptions
                 .Should()
                 .Equal(
                     Subscribe(290, 340)
                 );
-            
+
             ys3.Subscriptions
                 .Should()
                 .Equal(
                     Subscribe(360, 410)
                 );
         }
-        
+
         [Fact]
         public void InnerCompletes_WithOverlap()
         {
@@ -270,7 +270,7 @@ namespace MoreRx.Tests.Operators
                     OnNext(40, 104),
                     OnCompleted<int>(50)
                 );
-            
+
             var ys2 = scheduler.CreateColdObservable(
                     OnNext(10, 201),
                     OnNext(20, 202),
@@ -278,7 +278,7 @@ namespace MoreRx.Tests.Operators
                     OnNext(40, 204),
                     OnCompleted<int>(50)
                 );
-            
+
             var ys3 = scheduler.CreateColdObservable(
                     OnNext(10, 301),
                     OnNext(20, 302),
@@ -323,19 +323,19 @@ namespace MoreRx.Tests.Operators
                 .Equal(
                     Subscribe(220, 270)
                 );
-            
+
             ys2.Subscriptions
                 .Should()
                 .Equal(
                 );
-            
+
             ys3.Subscriptions
                 .Should()
                 .Equal(
                     Subscribe(270, 320)
                 );
         }
-        
+
         [Fact]
         public void InnerThrows_WithOverlap()
         {
@@ -349,7 +349,7 @@ namespace MoreRx.Tests.Operators
                     OnNext(40, 104),
                     OnError<int>(50, exception)
                 );
-            
+
             var ys2 = scheduler.CreateColdObservable(
                     OnNext(10, 201),
                     OnNext(20, 202),
@@ -389,13 +389,13 @@ namespace MoreRx.Tests.Operators
                 .Equal(
                     Subscribe(220, 270)
                 );
-            
+
             ys2.Subscriptions
                 .Should()
                 .Equal(
                 );
         }
-        
+
         [Fact]
         public void OuterThrows_WithOverlap()
         {
@@ -409,7 +409,7 @@ namespace MoreRx.Tests.Operators
                     OnNext(40, 104),
                     OnCompleted<int>(50)
                 );
-            
+
             var ys2 = scheduler.CreateColdObservable(
                     OnNext(10, 201),
                     OnNext(20, 202),
@@ -417,7 +417,7 @@ namespace MoreRx.Tests.Operators
                     OnNext(40, 204),
                     OnCompleted<int>(50)
                 );
-            
+
             var xs = scheduler.CreateHotObservable(
                 OnNext<IObservable<int>>(220, ys1),
                 OnError<IObservable<int>>(240, exception),
@@ -447,7 +447,7 @@ namespace MoreRx.Tests.Operators
                 .Equal(
                     Subscribe(220, 240)
                 );
-            
+
             ys2.Subscriptions
                 .Should()
                 .Equal(

@@ -22,7 +22,7 @@ namespace MoreRx.Tests.Operators
                 .Should()
                 .Throw<ArgumentNullException>();
         }
-        
+
         [Fact]
         public void NullArgs_Time()
         {
@@ -76,7 +76,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void ByCount_Size1()
         {
@@ -114,7 +114,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void ByCount_Size0()
         {
@@ -137,7 +137,7 @@ namespace MoreRx.Tests.Operators
                 .Should()
                 .Throw<ArgumentOutOfRangeException>();
         }
-        
+
         [Fact]
         public void ByTimet_Tick11()
         {
@@ -173,7 +173,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void ByTimet_Tick15()
         {
@@ -209,7 +209,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void ByTimet_Tick20()
         {

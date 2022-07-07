@@ -18,7 +18,7 @@ namespace MoreRx
         {
             _source = source;
             _scheduler = scheduler;
-            
+
             Parent = parent;
         }
 

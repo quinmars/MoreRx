@@ -32,7 +32,7 @@ namespace MoreRx
 
             return new OrderedObservable<TSource, TSelect>(source, selector, comparer, descending: false, DefaultSortScheduler);
         }
-        
+
         /// <summary>
         /// Orders the source by means of the given element selector ascendingly.
         /// </summary>
@@ -92,7 +92,7 @@ namespace MoreRx
 
             return new OrderedObservable<TSource, TSelect>(source, selector, comparer, descending: false, DefaultSortScheduler);
         }
-        
+
         /// <summary>
         /// Orders the source by means of the given element selector and comparer ascendingly.
         /// </summary>
@@ -152,7 +152,7 @@ namespace MoreRx
 
             return new OrderedObservable<TSource, TSelect>(source, selector, comparer, descending: true, DefaultSortScheduler);
         }
-        
+
         /// <summary>
         /// Orders the source by means of the given element selector descendingly.
         /// </summary>
@@ -212,7 +212,7 @@ namespace MoreRx
 
             return new OrderedObservable<TSource, TSelect>(source, selector, comparer, descending: true, DefaultSortScheduler);
         }
-        
+
         /// <summary>
         /// Orders the source by means of the given element selector and comparer descendingly.
         /// </summary>

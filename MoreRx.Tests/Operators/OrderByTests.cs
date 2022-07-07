@@ -57,7 +57,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void Random_Ascending_WithCustomComparer()
         {
@@ -101,7 +101,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void Random_Descending()
         {
@@ -145,7 +145,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void Random_Descending_WithCustomComparer()
         {
@@ -277,7 +277,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void Empty_Ascending()
         {

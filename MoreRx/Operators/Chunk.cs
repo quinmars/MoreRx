@@ -13,7 +13,7 @@ namespace MoreRx
             {
                 throw new ArgumentNullException(nameof(source));
             }
-            
+
             if (size < 1)
             {
                 throw new ArgumentOutOfRangeException(nameof(size));
@@ -21,14 +21,14 @@ namespace MoreRx
 
             return source.Buffer(size).Select(item => item.ToArray());
         }
-        
+
         public static IObservable<TSource[]> Chunk<TSource>(this IObservable<TSource> source, TimeSpan timeSpan, IScheduler scheduler)
         {
             if (source is null)
             {
                 throw new ArgumentNullException(nameof(source));
             }
-            
+
             if (scheduler is null)
             {
                 throw new ArgumentNullException(nameof(scheduler));

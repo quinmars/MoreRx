@@ -30,10 +30,10 @@ namespace MoreRx.Tests.Operators
             res.Messages
                 .Should()
                 .Equal(
-                    OnNext(230, ( 2, 3 )),
-                    OnNext(240, ( 3, 4 )),
-                    OnNext(250, ( 4, 5 )),
-                    OnCompleted<(int,int)>(400)
+                    OnNext(230, (2, 3)),
+                    OnNext(240, (3, 4)),
+                    OnNext(250, (4, 5)),
+                    OnCompleted<(int, int)>(400)
                 );
 
             xs.Subscriptions
@@ -42,7 +42,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void Length2()
         {
@@ -64,8 +64,8 @@ namespace MoreRx.Tests.Operators
             res.Messages
                 .Should()
                 .Equal(
-                    OnNext(230, ( 2, 3 )),
-                    OnCompleted<(int,int)>(400)
+                    OnNext(230, (2, 3)),
+                    OnCompleted<(int, int)>(400)
                 );
 
             xs.Subscriptions
@@ -74,7 +74,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void Length1()
         {
@@ -95,7 +95,7 @@ namespace MoreRx.Tests.Operators
             res.Messages
                 .Should()
                 .Equal(
-                    OnCompleted<(int,int)>(400)
+                    OnCompleted<(int, int)>(400)
                 );
 
             xs.Subscriptions
@@ -104,7 +104,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void Length0()
         {
@@ -121,7 +121,7 @@ namespace MoreRx.Tests.Operators
             res.Messages
                 .Should()
                 .Equal(
-                    OnCompleted<(int,int)>(400)
+                    OnCompleted<(int, int)>(400)
                 );
 
             xs.Subscriptions
