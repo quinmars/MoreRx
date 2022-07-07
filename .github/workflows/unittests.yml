@@ -1,0 +1,19 @@
+name: Unit Tests
+
+on: [pull_request, push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup NET6
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '6.0.x'
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+    - name: Run unit tests
+      run: dotnet test
