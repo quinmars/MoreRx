@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoreRx", "MoreRx\MoreRx.csproj", "{8166E1AD-164E-4434-971F-50C45A417E9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreRx.Tests", "MoreRx.Tests\MoreRx.Tests.csproj", "{9ED1A0C9-104C-480C-AD6A-0EC840006BF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8166E1AD-164E-4434-971F-50C45A417E9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8166E1AD-164E-4434-971F-50C45A417E9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8166E1AD-164E-4434-971F-50C45A417E9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8166E1AD-164E-4434-971F-50C45A417E9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ED1A0C9-104C-480C-AD6A-0EC840006BF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ED1A0C9-104C-480C-AD6A-0EC840006BF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ED1A0C9-104C-480C-AD6A-0EC840006BF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ED1A0C9-104C-480C-AD6A-0EC840006BF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE820A6A-1A8D-4422-9F38-C34AB061B847}
+	EndGlobalSection
+EndGlobal
