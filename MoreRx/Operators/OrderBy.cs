@@ -12,7 +12,7 @@ namespace MoreRx
         /// Orders the source by means of the given element selector ascendingly.
         /// </summary>
         /// <typeparam name="TSource">The element type of the source and result observables.</typeparam>
-        /// <typeparam name="K">The type of the selected sorting criterion.</typeparam>
+        /// <typeparam name="TSelect">The type of the selected sorting criterion.</typeparam>
         /// <param name="source">The observable to sort.</param>
         /// <param name="selector">The selector to select the sorting criterion.</param>
         /// <returns>The new observable instance.</returns>
@@ -37,7 +37,7 @@ namespace MoreRx
         /// Orders the source by means of the given element selector ascendingly.
         /// </summary>
         /// <typeparam name="TSource">The element type of the source and result observables.</typeparam>
-        /// <typeparam name="K">The type of the selected sorting criterion.</typeparam>
+        /// <typeparam name="TSelect">The type of the selected sorting criterion.</typeparam>
         /// <param name="source">The observable to sort.</param>
         /// <param name="selector">The selector to select the sorting criterion.</param>
         /// <param name="scheduler">The scheduler.</param>

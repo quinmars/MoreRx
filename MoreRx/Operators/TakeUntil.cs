@@ -7,6 +7,15 @@ namespace MoreRx
 {
     public static partial class MoreObservable
     {
+        /// <summary>
+        /// Forwards the elements of the source sequence until the cancellation gets canceled.
+        /// When the cancellation token was canceled the sequence will finish with a
+        /// completion notification.
+        /// </summary>
+        /// <typeparam name="TSource">The element type of the source and result observables.</typeparam>
+        /// <param name="source">The source observable.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The new observable instance.</returns>
         // inspired by https://stackoverflow.com/a/65202543/18687
         public static IObservable<TSource> TakeUntil<TSource>(this IObservable<TSource> source, CancellationToken cancellationToken)
         {
