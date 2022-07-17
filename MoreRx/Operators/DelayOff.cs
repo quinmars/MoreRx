@@ -34,9 +34,9 @@ namespace MoreRx
 
             return source
                 .DistinctUntilChanged()
-                .Select(b => !b
-                    ? Observable.Timer(timeSpan, scheduler).Select(_ => false)
-                    : Observable.Return(true, scheduler))
+                .Select(b => b
+                    ? True
+                    : Observable.Timer(timeSpan, scheduler).Select(_ => false))
                 .Switch()
                 .DistinctUntilChanged();
         }
@@ -73,9 +73,9 @@ namespace MoreRx
             return source
                 .Select(item => (item, state: selector(item)))
                 .DistinctUntilChanged(t => t.state)
-                .Select(t => !t.state
-                    ? Observable.Timer(timeSpan, scheduler).Select(_ => t)
-                    : Observable.Return(t, scheduler))
+                .Select(t => t.state
+                    ? Observable.Return(t)
+                    : Observable.Timer(timeSpan, scheduler).Select(_ => t))
                 .Switch()
                 .DistinctUntilChanged(t => t.state)
                 .Select(t => t.item);
