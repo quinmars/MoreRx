@@ -378,7 +378,7 @@ namespace MoreRx.Tests.Operators
             res.Messages
                 .Should()
                 .Equal(
-                    OnNext(225, 4),
+                    OnNext(220, 4),
                     OnCompleted<int>(400)
                 );
 
