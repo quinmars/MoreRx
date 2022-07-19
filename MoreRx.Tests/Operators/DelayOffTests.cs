@@ -69,6 +69,43 @@ namespace MoreRx.Tests.Operators
         }
 
         [Fact]
+        public void NotDelayed()
+        {
+            var scheduler = new TestScheduler();
+
+            var xs = scheduler.CreateHotObservable(
+                OnNext(180, true),
+                OnNext(220, true),
+                OnNext(230, false),
+                OnNext(240, true),
+                OnNext(250, true),
+                OnCompleted<bool>(400),
+                OnNext(410, true),
+                OnCompleted<bool>(420),
+                OnError<bool>(430, new Exception())
+            );
+
+            var res = scheduler.Start(() =>
+                xs.DelayOff(TimeSpan.Zero, scheduler)
+            );
+
+            res.Messages
+                .Should()
+                .Equal(
+                    OnNext(220, true),
+                    OnNext(230, false),
+                    OnNext(240, true),
+                    OnCompleted<bool>(400)
+                );
+
+            xs.Subscriptions
+                .Should()
+                .Equal(
+                    Subscribe(200, 400)
+                );
+        }
+
+        [Fact]
         public void Skipped()
         {
             var scheduler = new TestScheduler();
