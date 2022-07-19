@@ -67,7 +67,7 @@ namespace MoreRx
 
             if (timeSpan == TimeSpan.Zero)
             {
-                return source.DistinctUntilChanged();
+                return source.DistinctUntilChanged(item => selector(item));
             }
 
             return source
