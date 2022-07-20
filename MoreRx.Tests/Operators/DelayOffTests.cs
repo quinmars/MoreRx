@@ -209,7 +209,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void Delayed_WithSelector()
         {
@@ -246,7 +246,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void NotDelayed_WithSelector()
         {
@@ -353,7 +353,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
-        
+
         [Fact]
         public void AlwaysOff_WithSelector()
         {

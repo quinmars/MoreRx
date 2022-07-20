@@ -113,7 +113,7 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 290)
                 );
         }
-        
+
         [Fact]
         public void Never()
         {
