@@ -18,6 +18,6 @@ namespace MoreRx
         /// <param name="comparer">The comparer.</param>
         /// <param name="descending"><c>true</c> if the resulting sequence should be descending, otherwise <c>false</c>.</param>
         /// <returns>The order sequence.</returns>
-        IOrderedObservable<TSource> CreateOrderedObservable<TSelect>(Func<TSource, TSelect> selector, IComparer<TSelect> comparer, bool descending);
+        IOrderedObservable<TSource> CreateOrderedObservable<TSelect>(Func<TSource, TSelect> selector, IComparer<TSelect>? comparer, bool descending);
     }
 }

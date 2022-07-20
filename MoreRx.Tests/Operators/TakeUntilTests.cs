@@ -17,7 +17,7 @@ namespace MoreRx.Tests.Operators
         [Fact]
         public void NullArgs()
         {
-            var a = () => MoreObservable.TakeUntil(default(IObservable<string>), default);
+            var a = () => MoreObservable.TakeUntil(default(IObservable<string>)!, default);
 
             a
                 .Should()

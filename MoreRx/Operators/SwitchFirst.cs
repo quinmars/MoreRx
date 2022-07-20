@@ -87,7 +87,7 @@ namespace MoreRx
                             lock (gate)
                             {
                                 innerIsRunning = false;
-                                innerSubscription.Dispose();
+                                innerSubscription!.Dispose();
                                 innerSubscription = null;
 
                                 if (outerCompleted && last == null)

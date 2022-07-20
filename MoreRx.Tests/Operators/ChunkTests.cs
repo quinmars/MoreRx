@@ -16,7 +16,7 @@ namespace MoreRx.Tests.Operators
         [Fact]
         public void NullArgs_Size()
         {
-            var a = () => MoreObservable.Chunk(default(IObservable<string>), 5);
+            var a = () => MoreObservable.Chunk(default(IObservable<string>)!, 5);
 
             a
                 .Should()
@@ -29,8 +29,8 @@ namespace MoreRx.Tests.Operators
             var scheduler = new TestScheduler();
             var source = Observable.Empty<string>();
 
-            var a = () => MoreObservable.Chunk(default(IObservable<string>), TimeSpan.FromTicks(5), scheduler);
-            var b = () => MoreObservable.Chunk(source, TimeSpan.FromTicks(5), default);
+            var a = () => MoreObservable.Chunk(default(IObservable<string>)!, TimeSpan.FromTicks(5), scheduler);
+            var b = () => MoreObservable.Chunk(source, TimeSpan.FromTicks(5), default!);
 
             a
                 .Should()

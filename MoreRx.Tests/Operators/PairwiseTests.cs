@@ -134,7 +134,7 @@ namespace MoreRx.Tests.Operators
         [Fact]
         public void NullArgs()
         {
-            var a = () => MoreObservable.Pairwise(default(IObservable<string>));
+            var a = () => MoreObservable.Pairwise(default(IObservable<string>)!);
 
             a
                 .Should()

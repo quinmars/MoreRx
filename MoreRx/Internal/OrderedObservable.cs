@@ -12,9 +12,9 @@ namespace MoreRx
         private readonly IScheduler _scheduler;
         private readonly IObservable<TSource> _source;
 
-        protected OrderedObservable<TSource> Parent { get; }
+        protected OrderedObservable<TSource>? Parent { get; }
 
-        public OrderedObservable(IObservable<TSource> source, OrderedObservable<TSource> parent, IScheduler scheduler)
+        public OrderedObservable(IObservable<TSource> source, OrderedObservable<TSource>? parent, IScheduler scheduler)
         {
             _source = source;
             _scheduler = scheduler;
@@ -22,7 +22,7 @@ namespace MoreRx
             Parent = parent;
         }
 
-        public IOrderedObservable<TSource> CreateOrderedObservable<TSelect>(Func<TSource, TSelect> selector, IComparer<TSelect> comparer, bool descending)
+        public IOrderedObservable<TSource> CreateOrderedObservable<TSelect>(Func<TSource, TSelect> selector, IComparer<TSelect>? comparer, bool descending)
         {
             return new OrderedObservable<TSource, TSelect>(_source, selector, comparer, descending, this, _scheduler);
         }
@@ -41,19 +41,19 @@ namespace MoreRx
     internal sealed class OrderedObservable<TSource, TSelect> : OrderedObservable<TSource>
     {
         private readonly Func<TSource, TSelect> _selector;
-        private readonly IComparer<TSelect> _comparer;
+        private readonly IComparer<TSelect>? _comparer;
         private readonly bool _descending;
 
-        public OrderedObservable(IObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect> comparer, bool descending, IScheduler scheduler)
+        public OrderedObservable(IObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect>? comparer, bool descending, IScheduler scheduler)
             : this(source, selector, comparer, descending, null, scheduler)
         {
         }
 
         public OrderedObservable(IObservable<TSource> source,
                                   Func<TSource, TSelect> selector,
-                                  IComparer<TSelect> comparer,
+                                  IComparer<TSelect>? comparer,
                                   bool descending,
-                                  OrderedObservable<TSource> parent,
+                                  OrderedObservable<TSource>? parent,
                                   IScheduler scheduler)
             : base(source, parent, scheduler)
         {

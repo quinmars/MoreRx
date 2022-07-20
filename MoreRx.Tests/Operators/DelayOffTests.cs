@@ -17,13 +17,13 @@ namespace MoreRx.Tests.Operators
         [Fact]
         public void NullArgs()
         {
-            var a = () => MoreObservable.DelayOff(default, TimeSpan.FromSeconds(1), CurrentThreadScheduler.Instance);
+            var a = () => MoreObservable.DelayOff(default!, TimeSpan.FromSeconds(1), CurrentThreadScheduler.Instance);
 
             a
                 .Should()
                 .Throw<ArgumentNullException>();
 
-            var b = () => MoreObservable.DelayOff(default(IObservable<string>), s => s is null, TimeSpan.FromSeconds(1), CurrentThreadScheduler.Instance);
+            var b = () => MoreObservable.DelayOff(default(IObservable<string>)!, s => s is null, TimeSpan.FromSeconds(1), CurrentThreadScheduler.Instance);
 
             b
                 .Should()
