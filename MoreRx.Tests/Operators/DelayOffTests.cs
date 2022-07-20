@@ -209,5 +209,184 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
+        
+        [Fact]
+        public void Delayed_WithSelector()
+        {
+            var scheduler = new TestScheduler();
+
+            var xs = scheduler.CreateHotObservable(
+                OnNext(180, 2),
+                OnNext(220, 4),
+                OnNext(230, 5),
+                OnNext(240, 6),
+                OnNext(250, 8),
+                OnCompleted<int>(400),
+                OnNext(410, 9),
+                OnCompleted<int>(420),
+                OnError<int>(430, new Exception())
+            );
+
+            var res = scheduler.Start(() =>
+                xs.DelayOff(i => (i % 2) == 0, TimeSpan.FromTicks(2), scheduler)
+            );
+
+            res.Messages
+                .Should()
+                .Equal(
+                    OnNext(220, 4),
+                    OnNext(232, 5),
+                    OnNext(240, 6),
+                    OnCompleted<int>(400)
+                );
+
+            xs.Subscriptions
+                .Should()
+                .Equal(
+                    Subscribe(200, 400)
+                );
+        }
+        
+        [Fact]
+        public void NotDelayed_WithSelector()
+        {
+            var scheduler = new TestScheduler();
+
+            var xs = scheduler.CreateHotObservable(
+                OnNext(180, 2),
+                OnNext(220, 4),
+                OnNext(230, 5),
+                OnNext(240, 6),
+                OnNext(250, 8),
+                OnCompleted<int>(400),
+                OnNext(410, 9),
+                OnCompleted<int>(420),
+                OnError<int>(430, new Exception())
+            );
+
+            var res = scheduler.Start(() =>
+                xs.DelayOff(i => (i % 2) == 0, TimeSpan.Zero, scheduler)
+            );
+
+            res.Messages
+                .Should()
+                .Equal(
+                    OnNext(220, 4),
+                    OnNext(230, 5),
+                    OnNext(240, 6),
+                    OnCompleted<int>(400)
+                );
+
+            xs.Subscriptions
+                .Should()
+                .Equal(
+                    Subscribe(200, 400)
+                );
+        }
+
+        [Fact]
+        public void Skipped_WithSelector()
+        {
+            var scheduler = new TestScheduler();
+
+            var xs = scheduler.CreateHotObservable(
+                OnNext(180, 2),
+                OnNext(220, 4),
+                OnNext(230, 5),
+                OnNext(240, 6),
+                OnNext(250, 8),
+                OnCompleted<int>(400),
+                OnNext(410, 9),
+                OnCompleted<int>(420),
+                OnError<int>(430, new Exception())
+            );
+
+            var res = scheduler.Start(() =>
+                xs.DelayOff(i => (i % 2) == 0, TimeSpan.FromTicks(10), scheduler)
+            );
+
+            res.Messages
+                .Should()
+                .Equal(
+                    OnNext(220, 4),
+                    OnCompleted<int>(400)
+                );
+
+            xs.Subscriptions
+                .Should()
+                .Equal(
+                    Subscribe(200, 400)
+                );
+        }
+
+        [Fact]
+        public void AlwaysOn_WithSelector()
+        {
+            var scheduler = new TestScheduler();
+
+            var xs = scheduler.CreateHotObservable(
+                OnNext(180, 1),
+                OnNext(220, 3),
+                OnNext(230, 5),
+                OnNext(240, 7),
+                OnNext(250, 9),
+                OnCompleted<int>(400),
+                OnNext(410, 11),
+                OnCompleted<int>(420),
+                OnError<int>(430, new Exception())
+            );
+
+            var res = scheduler.Start(() =>
+                xs.DelayOff(i => (i % 2) == 0, TimeSpan.FromTicks(5), scheduler)
+            );
+
+            res.Messages
+                .Should()
+                .Equal(
+                    OnNext(225, 3),
+                    OnCompleted<int>(400)
+                );
+
+            xs.Subscriptions
+                .Should()
+                .Equal(
+                    Subscribe(200, 400)
+                );
+        }
+        
+        [Fact]
+        public void AlwaysOff_WithSelector()
+        {
+            var scheduler = new TestScheduler();
+
+            var xs = scheduler.CreateHotObservable(
+                OnNext(180, 2),
+                OnNext(220, 4),
+                OnNext(230, 6),
+                OnNext(240, 8),
+                OnNext(250, 10),
+                OnCompleted<int>(400),
+                OnNext(410, 12),
+                OnCompleted<int>(420),
+                OnError<int>(430, new Exception())
+            );
+
+            var res = scheduler.Start(() =>
+                xs.DelayOff(i => (i % 2) == 0, TimeSpan.FromTicks(5), scheduler)
+            );
+
+            res.Messages
+                .Should()
+                .Equal(
+                    OnNext(220, 4),
+                    OnCompleted<int>(400)
+                );
+
+            xs.Subscriptions
+                .Should()
+                .Equal(
+                    Subscribe(200, 400)
+                );
+        }
     }
 }
