@@ -15,6 +15,16 @@ namespace MoreRx.Tests.Operators
     public class TakeUntilTests : ReactiveTest
     {
         [Fact]
+        public void NullArgs()
+        {
+            var a = () => MoreObservable.TakeUntil(default(IObservable<string>), default);
+
+            a
+                .Should()
+                .Throw<ArgumentNullException>();
+        }
+
+        [Fact]
         public void Inbetween()
         {
             var scheduler = new TestScheduler();
@@ -101,6 +111,50 @@ namespace MoreRx.Tests.Operators
                 .Should()
                 .Equal(
                     Subscribe(200, 290)
+                );
+        }
+        
+        [Fact]
+        public void Never()
+        {
+            var scheduler = new TestScheduler();
+
+            var xs = scheduler.CreateHotObservable(
+                OnNext(180, 1),
+                OnNext(220, 2),
+                OnNext(230, 3),
+                OnNext(240, 4),
+                OnNext(250, 5),
+                OnNext(260, 6),
+                OnNext(270, 7),
+                OnNext(280, 8),
+                OnCompleted<int>(400),
+                OnNext(410, -1),
+                OnCompleted<int>(420),
+                OnError<int>(430, new Exception())
+            );
+
+            var res = scheduler.Start(() =>
+                xs.TakeUntil(default)
+            );
+
+            res.Messages
+                .Should()
+                .Equal(
+                    OnNext(220, 2),
+                    OnNext(230, 3),
+                    OnNext(240, 4),
+                    OnNext(250, 5),
+                    OnNext(260, 6),
+                    OnNext(270, 7),
+                    OnNext(280, 8),
+                    OnCompleted<int>(400)
+                );
+
+            xs.Subscriptions
+                .Should()
+                .Equal(
+                    Subscribe(200, 400)
                 );
         }
 
