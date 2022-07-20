@@ -15,6 +15,16 @@ namespace MoreRx.Tests.Operators
     public class SwitchFirstTests : ReactiveTest
     {
         [Fact]
+        public void NullArgs()
+        {
+            var a = () => MoreObservable.SwitchFirst(default(IObservable<IObservable<string>>));
+
+            a
+                .Should()
+                .Throw<ArgumentNullException>();
+        }
+
+        [Fact]
         public void OuterCompletes_NoOverlap()
         {
             var scheduler = new TestScheduler();
