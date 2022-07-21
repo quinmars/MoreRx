@@ -17,7 +17,7 @@ namespace MoreRx.Tests.Operators
         [Fact]
         public void NullArgs()
         {
-            var a = () => MoreObservable.SwitchFirst(default(IObservable<IObservable<string>>));
+            var a = () => MoreObservable.SwitchFirst(default(IObservable<IObservable<string>>)!);
 
             a
                 .Should()
