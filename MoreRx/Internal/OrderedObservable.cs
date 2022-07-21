@@ -16,6 +16,16 @@ namespace MoreRx
 
         public OrderedObservable(IObservable<TSource> source, OrderedObservable<TSource>? parent, IScheduler scheduler)
         {
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if (scheduler is null)
+            {
+                throw new ArgumentNullException(nameof(scheduler));
+            }
+
             _source = source;
             _scheduler = scheduler;
 
@@ -57,6 +67,11 @@ namespace MoreRx
                                   IScheduler scheduler)
             : base(source, parent, scheduler)
         {
+            if (selector is null)
+            {
+                throw new ArgumentNullException(nameof(selector));
+            }
+
             _selector = selector;
             _comparer = comparer;
             _descending = descending;

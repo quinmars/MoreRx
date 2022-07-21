@@ -18,19 +18,7 @@ namespace MoreRx
         /// <returns>The new observable instance.</returns>
         public static IOrderedObservable<TSource> OrderBy<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (selector is null)
-            {
-                throw new ArgumentNullException(nameof(selector));
-            }
-
-            var comparer = Comparer<TSelect>.Default;
-
-            return new OrderedObservable<TSource, TSelect>(source, selector, comparer, descending: false, DefaultSortScheduler);
+            return new OrderedObservable<TSource, TSelect>(source, selector, null, descending: false, DefaultSortScheduler);
         }
 
         /// <summary>
@@ -44,24 +32,7 @@ namespace MoreRx
         /// <returns>The new observable instance.</returns>
         public static IOrderedObservable<TSource> OrderBy<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector, IScheduler scheduler)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (selector is null)
-            {
-                throw new ArgumentNullException(nameof(selector));
-            }
-
-            if (scheduler is null)
-            {
-                throw new ArgumentNullException(nameof(scheduler));
-            }
-
-            var comparer = Comparer<TSelect>.Default;
-
-            return new OrderedObservable<TSource, TSelect>(source, selector, comparer, descending: false, scheduler);
+            return new OrderedObservable<TSource, TSelect>(source, selector, null, descending: false, scheduler);
         }
 
         /// <summary>
@@ -75,16 +46,6 @@ namespace MoreRx
         /// <returns>The new observable instance.</returns>
         public static IOrderedObservable<TSource> OrderBy<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect>? comparer)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (selector is null)
-            {
-                throw new ArgumentNullException(nameof(selector));
-            }
-
             return new OrderedObservable<TSource, TSelect>(source, selector, comparer, descending: false, DefaultSortScheduler);
         }
 
@@ -100,21 +61,6 @@ namespace MoreRx
         /// <returns>The new observable instance.</returns>
         public static IOrderedObservable<TSource> OrderBy<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect>? comparer, IScheduler scheduler)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (selector is null)
-            {
-                throw new ArgumentNullException(nameof(selector));
-            }
-
-            if (scheduler is null)
-            {
-                throw new ArgumentNullException(nameof(scheduler));
-            }
-
             return new OrderedObservable<TSource, TSelect>(source, selector, comparer, descending: false, scheduler);
         }
 
@@ -128,19 +74,7 @@ namespace MoreRx
         /// <returns>The new observable instance.</returns>
         public static IOrderedObservable<TSource> OrderByDescending<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (selector is null)
-            {
-                throw new ArgumentNullException(nameof(selector));
-            }
-
-            var comparer = Comparer<TSelect>.Default;
-
-            return new OrderedObservable<TSource, TSelect>(source, selector, comparer, descending: true, DefaultSortScheduler);
+            return new OrderedObservable<TSource, TSelect>(source, selector, null, descending: true, DefaultSortScheduler);
         }
 
         /// <summary>
@@ -154,24 +88,7 @@ namespace MoreRx
         /// <returns>The new observable instance.</returns>
         public static IOrderedObservable<TSource> OrderByDescending<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector, IScheduler scheduler)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (selector is null)
-            {
-                throw new ArgumentNullException(nameof(selector));
-            }
-
-            if (scheduler is null)
-            {
-                throw new ArgumentNullException(nameof(scheduler));
-            }
-
-            var comparer = Comparer<TSelect>.Default;
-
-            return new OrderedObservable<TSource, TSelect>(source, selector, comparer, descending: true, scheduler);
+            return new OrderedObservable<TSource, TSelect>(source, selector, null, descending: true, scheduler);
         }
 
         /// <summary>
@@ -185,16 +102,6 @@ namespace MoreRx
         /// <returns>The new observable instance.</returns>
         public static IOrderedObservable<TSource> OrderByDescending<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect>? comparer)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (selector is null)
-            {
-                throw new ArgumentNullException(nameof(selector));
-            }
-
             return new OrderedObservable<TSource, TSelect>(source, selector, comparer, descending: true, DefaultSortScheduler);
         }
 
@@ -210,21 +117,6 @@ namespace MoreRx
         /// <returns>The new observable instance.</returns>
         public static IOrderedObservable<TSource> OrderByDescending<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect>? comparer, IScheduler scheduler)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (selector is null)
-            {
-                throw new ArgumentNullException(nameof(selector));
-            }
-
-            if (scheduler is null)
-            {
-                throw new ArgumentNullException(nameof(scheduler));
-            }
-
             return new OrderedObservable<TSource, TSelect>(source, selector, comparer, descending: true, scheduler);
         }
     }
