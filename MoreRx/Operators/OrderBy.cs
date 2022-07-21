@@ -73,7 +73,7 @@ namespace MoreRx
         /// <param name="selector">The selector to select the sorting criterion.</param>
         /// <param name="comparer">The comparer to compare the sorting criterion.</param>
         /// <returns>The new observable instance.</returns>
-        public static IOrderedObservable<TSource> OrderBy<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect> comparer)
+        public static IOrderedObservable<TSource> OrderBy<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect>? comparer)
         {
             if (source is null)
             {
@@ -83,11 +83,6 @@ namespace MoreRx
             if (selector is null)
             {
                 throw new ArgumentNullException(nameof(selector));
-            }
-
-            if (comparer is null)
-            {
-                throw new ArgumentNullException(nameof(comparer));
             }
 
             return new OrderedObservable<TSource, TSelect>(source, selector, comparer, descending: false, DefaultSortScheduler);
@@ -103,7 +98,7 @@ namespace MoreRx
         /// <param name="comparer">The comparer to compare the sorting criterion.</param>
         /// <param name="scheduler">The scheduler.</param>
         /// <returns>The new observable instance.</returns>
-        public static IOrderedObservable<TSource> OrderBy<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect> comparer, IScheduler scheduler)
+        public static IOrderedObservable<TSource> OrderBy<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect>? comparer, IScheduler scheduler)
         {
             if (source is null)
             {
@@ -113,11 +108,6 @@ namespace MoreRx
             if (selector is null)
             {
                 throw new ArgumentNullException(nameof(selector));
-            }
-
-            if (comparer is null)
-            {
-                throw new ArgumentNullException(nameof(comparer));
             }
 
             if (scheduler is null)
@@ -193,7 +183,7 @@ namespace MoreRx
         /// <param name="selector">The selector to select the sorting criterion.</param>
         /// <param name="comparer">The comparer to compare the sorting criterion.</param>
         /// <returns>The new observable instance.</returns>
-        public static IOrderedObservable<TSource> OrderByDescending<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect> comparer)
+        public static IOrderedObservable<TSource> OrderByDescending<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect>? comparer)
         {
             if (source is null)
             {
@@ -203,11 +193,6 @@ namespace MoreRx
             if (selector is null)
             {
                 throw new ArgumentNullException(nameof(selector));
-            }
-
-            if (comparer is null)
-            {
-                throw new ArgumentNullException(nameof(comparer));
             }
 
             return new OrderedObservable<TSource, TSelect>(source, selector, comparer, descending: true, DefaultSortScheduler);
@@ -223,7 +208,7 @@ namespace MoreRx
         /// <param name="comparer">The comparer to compare the sorting criterion.</param>
         /// <param name="scheduler">The scheduler.</param>
         /// <returns>The new observable instance.</returns>
-        public static IOrderedObservable<TSource> OrderByDescending<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect> comparer, IScheduler scheduler)
+        public static IOrderedObservable<TSource> OrderByDescending<TSource, TSelect>(this IObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect>? comparer, IScheduler scheduler)
         {
             if (source is null)
             {
@@ -233,11 +218,6 @@ namespace MoreRx
             if (selector is null)
             {
                 throw new ArgumentNullException(nameof(selector));
-            }
-
-            if (comparer is null)
-            {
-                throw new ArgumentNullException(nameof(comparer));
             }
 
             if (scheduler is null)

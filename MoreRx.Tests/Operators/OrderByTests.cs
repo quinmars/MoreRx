@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Concurrency;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -13,6 +15,131 @@ namespace MoreRx.Tests.Operators
     public class OrderByTests : ReactiveTest
     {
         public static readonly IComparer<int> CustomComparer = new CustomInverseIntComparer();
+
+        [Fact]
+        public void NullArgs()
+        {
+            var a1 = () => MoreObservable.OrderBy(default(IObservable<string>)!, s => s);
+            a1
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var a2 = () => MoreObservable.OrderBy(Observable.Empty<string>(), default(Func<string, string>)!);
+            a2
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var b1 = () => MoreObservable.OrderBy(default(IObservable<string>)!, s => s, Scheduler.Default);
+            b1
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var b2 = () => MoreObservable.OrderBy(Observable.Empty<string>(), default(Func<string, string>)!, Scheduler.Default);
+            b2
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var b3 = () => MoreObservable.OrderBy(Observable.Empty<string>(), s => s, default(IScheduler)!);
+            b3
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var c1 = () => MoreObservable.OrderBy(default(IObservable<string>)!, s => s, Comparer<string>.Default);
+            c1
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var c2 = () => MoreObservable.OrderBy(Observable.Empty<string>(), default(Func<string, string>)!, Comparer<string>.Default);
+            c2
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var c3 = () => MoreObservable.OrderBy(Observable.Empty<string>(), s => s, default(IComparer<string>));
+            c3
+                .Should()
+                .NotThrow<ArgumentNullException>();
+
+            var d1 = () => MoreObservable.OrderBy(default(IObservable<string>)!, s => s, Comparer<string>.Default, Scheduler.Default);
+            d1
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var d2 = () => MoreObservable.OrderBy(Observable.Empty<string>(), default(Func<string, string>)!, Comparer<string>.Default, Scheduler.Default);
+            d2
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var d3 = () => MoreObservable.OrderBy(Observable.Empty<string>(), s => s, default(IComparer<string>), Scheduler.Default);
+            d3
+                .Should()
+                .NotThrow<ArgumentNullException>();
+
+            var d4 = () => MoreObservable.OrderBy(Observable.Empty<string>(), s => s, Comparer<string>.Default, null);
+            d4
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var e1 = () => MoreObservable.OrderByDescending(default(IObservable<string>)!, s => s);
+            e1
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var e2 = () => MoreObservable.OrderByDescending(Observable.Empty<string>(), default(Func<string, string>)!);
+            e2
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var f1 = () => MoreObservable.OrderByDescending(default(IObservable<string>)!, s => s, Scheduler.Default);
+            f1
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var f2 = () => MoreObservable.OrderByDescending(Observable.Empty<string>(), default(Func<string, string>)!, Scheduler.Default);
+            f2
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var f3 = () => MoreObservable.OrderByDescending(Observable.Empty<string>(), s => s, default(IScheduler)!);
+            f3
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var g1 = () => MoreObservable.OrderByDescending(default(IObservable<string>)!, s => s, Comparer<string>.Default);
+            g1
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var g2 = () => MoreObservable.OrderByDescending(Observable.Empty<string>(), default(Func<string, string>)!, Comparer<string>.Default);
+            g2
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var g3 = () => MoreObservable.OrderByDescending(Observable.Empty<string>(), s => s, default(IComparer<string>));
+            g3
+                .Should()
+                .NotThrow<ArgumentNullException>();
+
+            var h1 = () => MoreObservable.OrderByDescending(default(IObservable<string>)!, s => s, Comparer<string>.Default, Scheduler.Default);
+            h1
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var h2 = () => MoreObservable.OrderByDescending(Observable.Empty<string>(), default(Func<string, string>)!, Comparer<string>.Default, Scheduler.Default);
+            h2
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var h3 = () => MoreObservable.OrderByDescending(Observable.Empty<string>(), s => s, default(IComparer<string>), Scheduler.Default);
+            h3
+                .Should()
+                .NotThrow<ArgumentNullException>();
+
+            var h4 = () => MoreObservable.OrderByDescending(Observable.Empty<string>(), s => s, Comparer<string>.Default, null);
+            h4
+                .Should()
+                .Throw<ArgumentNullException>();
+        }
+
 
         [Fact]
         public void Random_Ascending()
