@@ -40,12 +40,12 @@ namespace MoreRx.Tests.Operators
                 .Should()
                 .NotThrow<ArgumentNullException>();
 
-            var d1 = () => MoreObservable.ThenBy(default(IOrderedObservable<string>)!, s => s);
+            var d1 = () => MoreObservable.ThenByDescending(default(IOrderedObservable<string>)!, s => s);
             d1
                 .Should()
                 .Throw<ArgumentNullException>();
 
-            var d2 = () => MoreObservable.ThenBy(empty, default(Func<string, string>)!);
+            var d2 = () => MoreObservable.ThenByDescending(empty, default(Func<string, string>)!);
             d2
                 .Should()
                 .Throw<ArgumentNullException>();
