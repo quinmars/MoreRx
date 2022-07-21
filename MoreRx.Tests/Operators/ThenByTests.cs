@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using System.Reactive.Concurrency;
+using System.Reactive.Linq;
+using FluentAssertions;
 using Microsoft.Reactive.Testing;
 using Xunit;
 
@@ -7,6 +9,62 @@ namespace MoreRx.Tests.Operators
     public class ThenByTests : ReactiveTest
     {
         public static readonly IComparer<int> CustomComparer = new CustomInverseIntComparer();
+
+        [Fact]
+        public void NullArgs()
+        {
+            var empty = Observable.Empty<string>().OrderBy(s => s);
+
+            var a1 = () => MoreObservable.ThenBy(default(IOrderedObservable<string>)!, s => s);
+            a1
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var a2 = () => MoreObservable.ThenBy(empty, default(Func<string, string>)!);
+            a2
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var b1 = () => MoreObservable.ThenBy(default(IOrderedObservable<string>)!, s => s, Comparer<string>.Default);
+            b1
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var b2 = () => MoreObservable.ThenBy(empty, default(Func<string, string>)!, Comparer<string>.Default);
+            b2
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var b3 = () => MoreObservable.ThenBy(empty, s => s, default(IComparer<string>));
+            b3
+                .Should()
+                .NotThrow<ArgumentNullException>();
+
+            var d1 = () => MoreObservable.ThenBy(default(IOrderedObservable<string>)!, s => s);
+            d1
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var d2 = () => MoreObservable.ThenBy(empty, default(Func<string, string>)!);
+            d2
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var e1 = () => MoreObservable.ThenByDescending(default(IOrderedObservable<string>)!, s => s, Comparer<string>.Default);
+            e1
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var e2 = () => MoreObservable.ThenByDescending(empty, default(Func<string, string>)!, Comparer<string>.Default);
+            e2
+                .Should()
+                .Throw<ArgumentNullException>();
+
+            var e3 = () => MoreObservable.ThenByDescending(empty, s => s, default(IComparer<string>));
+            e3
+                .Should()
+                .NotThrow<ArgumentNullException>();
+        }
 
         [Fact]
         public void Random_Ascending()

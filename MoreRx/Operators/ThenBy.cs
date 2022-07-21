@@ -38,7 +38,7 @@ namespace MoreRx
         /// <param name="selector">The selector to select the sorting criterion.</param>
         /// <param name="comparer">The comparer to compare the sorting criterion.</param>
         /// <returns>The new observable instance.</returns>
-        public static IOrderedObservable<TSource> ThenBy<TSource, TSelect>(this IOrderedObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect> comparer)
+        public static IOrderedObservable<TSource> ThenBy<TSource, TSelect>(this IOrderedObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect>? comparer)
         {
             if (source is null)
             {
@@ -48,11 +48,6 @@ namespace MoreRx
             if (selector is null)
             {
                 throw new ArgumentNullException(nameof(selector));
-            }
-
-            if (comparer is null)
-            {
-                throw new ArgumentNullException(nameof(comparer));
             }
 
             return source.CreateOrderedObservable(selector, comparer, false);
@@ -90,7 +85,7 @@ namespace MoreRx
         /// <param name="selector">The selector to select the sorting criterion.</param>
         /// <param name="comparer">The comparer to compare the sorting criterion.</param>
         /// <returns>The new observable instance.</returns>
-        public static IOrderedObservable<TSource> ThenByDescending<TSource, TSelect>(this IOrderedObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect> comparer)
+        public static IOrderedObservable<TSource> ThenByDescending<TSource, TSelect>(this IOrderedObservable<TSource> source, Func<TSource, TSelect> selector, IComparer<TSelect>? comparer)
         {
             if (source is null)
             {
@@ -100,11 +95,6 @@ namespace MoreRx
             if (selector is null)
             {
                 throw new ArgumentNullException(nameof(selector));
-            }
-
-            if (comparer is null)
-            {
-                throw new ArgumentNullException(nameof(comparer));
             }
 
             return source.CreateOrderedObservable(selector, comparer, true);
