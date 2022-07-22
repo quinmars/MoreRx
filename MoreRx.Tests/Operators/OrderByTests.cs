@@ -74,7 +74,7 @@ namespace MoreRx.Tests.Operators
                 .Should()
                 .NotThrow<ArgumentNullException>();
 
-            var d4 = () => MoreObservable.OrderBy(Observable.Empty<string>(), s => s, Comparer<string>.Default, null);
+            var d4 = () => MoreObservable.OrderBy(Observable.Empty<string>(), s => s, Comparer<string>.Default, default!);
             d4
                 .Should()
                 .Throw<ArgumentNullException>();
@@ -134,7 +134,7 @@ namespace MoreRx.Tests.Operators
                 .Should()
                 .NotThrow<ArgumentNullException>();
 
-            var h4 = () => MoreObservable.OrderByDescending(Observable.Empty<string>(), s => s, Comparer<string>.Default, null);
+            var h4 = () => MoreObservable.OrderByDescending(Observable.Empty<string>(), s => s, Comparer<string>.Default, default!);
             h4
                 .Should()
                 .Throw<ArgumentNullException>();
