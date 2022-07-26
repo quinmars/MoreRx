@@ -6,6 +6,15 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
+    <PackageProjectUrl>https://github.com/quinmars/MoreRx</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/quinmars/MoreRx</RepositoryUrl>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <AnalysisLevel>6.0-recommended</AnalysisLevel>
+    <Version>0.1.0</Version>
+    <Authors>quinmars</Authors>
+    <Description>More reactive extensions - a collection of useful operators.</Description>
+    <PackageTags>reactive;Rx</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
