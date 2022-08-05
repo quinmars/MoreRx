@@ -57,17 +57,6 @@ namespace MoreRx
             return _list[0].Value;
         }
 
-        public bool TryPop(out T? value)
-        {
-            if (_count > 0)
-            {
-                value = Pop();
-                return true;
-            }
-            value = default;
-            return false;
-        }
-
         void Heapify(int i)
         {
             while (true)
