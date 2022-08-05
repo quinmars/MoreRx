@@ -82,7 +82,7 @@ namespace MoreRx.Tests.Operators
 
 
         [Fact]
-        public void Random_Ascending()
+        public void Random()
         {
             var scheduler = new TestScheduler();
 
@@ -126,7 +126,86 @@ namespace MoreRx.Tests.Operators
         }
 
         [Fact]
-        public void Random_Ascending_WithCustomComparer()
+        public void Random_Capped()
+        {
+            var scheduler = new TestScheduler();
+
+            var xs = scheduler.CreateHotObservable(
+                OnNext(180, 1),
+                OnNext(220, 6),
+                OnNext(230, 3),
+                OnNext(240, 7),
+                OnNext(250, 2),
+                OnNext(260, 5),
+                OnNext(270, 8),
+                OnNext(280, 4),
+                OnCompleted<int>(400),
+                OnNext(410, -1),
+                OnCompleted<int>(420),
+                OnError<int>(430, new Exception())
+            );
+
+            var res = scheduler.Start(() =>
+                xs.LargestBy(x => x, 5, scheduler)
+            );
+
+            res.Messages
+                .Should()
+                .Equal(
+                    OnNext(401, 4),
+                    OnNext(402, 5),
+                    OnNext(403, 6),
+                    OnNext(404, 7),
+                    OnNext(405, 8),
+                    OnCompleted<int>(406)
+                );
+
+            xs.Subscriptions
+                .Should()
+                .Equal(
+                    Subscribe(200, 400)
+                );
+        }
+
+        [Fact]
+        public void Random_ZeroElements()
+        {
+            var scheduler = new TestScheduler();
+
+            var xs = scheduler.CreateHotObservable(
+                OnNext(180, 1),
+                OnNext(220, 6),
+                OnNext(230, 3),
+                OnNext(240, 7),
+                OnNext(250, 2),
+                OnNext(260, 5),
+                OnNext(270, 8),
+                OnNext(280, 4),
+                OnCompleted<int>(400),
+                OnNext(410, -1),
+                OnCompleted<int>(420),
+                OnError<int>(430, new Exception())
+            );
+
+            var res = scheduler.Start(() =>
+                xs.LargestBy(x => x, 0, scheduler)
+            );
+
+            res.Messages
+                .Should()
+                .Equal(
+                    OnCompleted<int>(401)
+                );
+
+            xs.Subscriptions
+                .Should()
+                .Equal(
+                    Subscribe(200, 400)
+                );
+        }
+
+        [Fact]
+        public void Random_WithCustomComparer()
         {
             var scheduler = new TestScheduler();
 
@@ -170,7 +249,49 @@ namespace MoreRx.Tests.Operators
         }
 
         [Fact]
-        public void Sorted()
+        public void Random_WithCustomComparer_Capped()
+        {
+            var scheduler = new TestScheduler();
+
+            var xs = scheduler.CreateHotObservable(
+                OnNext(180, 1),
+                OnNext(220, 6),
+                OnNext(230, 3),
+                OnNext(240, 7),
+                OnNext(250, 2),
+                OnNext(260, 5),
+                OnNext(270, 8),
+                OnNext(280, 4),
+                OnCompleted<int>(400),
+                OnNext(410, -1),
+                OnCompleted<int>(420),
+                OnError<int>(430, new Exception())
+            );
+
+            var res = scheduler.Start(() =>
+                xs.LargestBy(x => x, 5, CustomComparer, scheduler)
+            );
+
+            res.Messages
+                .Should()
+                .Equal(
+                    OnNext(401, 6),
+                    OnNext(402, 5),
+                    OnNext(403, 4),
+                    OnNext(404, 3),
+                    OnNext(405, 2),
+                    OnCompleted<int>(406)
+                );
+
+            xs.Subscriptions
+                .Should()
+                .Equal(
+                    Subscribe(200, 400)
+                );
+        }
+
+        [Fact]
+        public void Sorted_Capped()
         {
             var scheduler = new TestScheduler();
 
@@ -190,20 +311,18 @@ namespace MoreRx.Tests.Operators
             );
 
             var res = scheduler.Start(() =>
-                xs.LargestBy(x => x, 10, scheduler)
+                xs.LargestBy(x => x, 5, scheduler)
             );
 
             res.Messages
                 .Should()
                 .Equal(
-                    OnNext(401, 2),
-                    OnNext(402, 3),
-                    OnNext(403, 4),
-                    OnNext(404, 5),
-                    OnNext(405, 6),
-                    OnNext(406, 7),
-                    OnNext(407, 8),
-                    OnCompleted<int>(408)
+                    OnNext(401, 4),
+                    OnNext(402, 5),
+                    OnNext(403, 6),
+                    OnNext(404, 7),
+                    OnNext(405, 8),
+                    OnCompleted<int>(406)
                 );
 
             xs.Subscriptions

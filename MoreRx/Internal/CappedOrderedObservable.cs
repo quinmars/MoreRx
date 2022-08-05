@@ -56,7 +56,11 @@ namespace MoreRx
                 {
                     var count = heap.Count;
 
-                    if (count == _count)
+                    if (_count == 0)
+                    {
+                        ; // Do nothing
+                    }
+                    else if (count == _count)
                     {
                         comparer.Evaluate(v, count + 1);
                         var pos1 = heap.Peak();
