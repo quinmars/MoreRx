@@ -186,6 +186,50 @@ namespace MoreRx.Tests.Operators
         }
 
         [Fact]
+        public void Random_Stability()
+        {
+            var scheduler = new TestScheduler();
+
+            var xs = scheduler.CreateHotObservable(
+                OnNext(180, (1, 1)),
+                OnNext(220, (2, 2)),
+                OnNext(230, (2, 3)),
+                OnNext(240, (1, 4)),
+                OnNext(250, (2, 5)),
+                OnNext(260, (1, 6)),
+                OnNext(270, (1, 7)),
+                OnNext(280, (2, 8)),
+                OnCompleted<(int, int)>(400),
+                OnNext(410, (-1, 0)),
+                OnCompleted<(int, int)>(420),
+                OnError<(int, int)>(430, new Exception())
+            );
+
+            var res = scheduler.Start(() =>
+                xs.OrderBy(x => x.Item1, scheduler)
+            );
+
+            res.Messages
+                .Should()
+                .Equal(
+                    OnNext(401, (1, 4)),
+                    OnNext(402, (1, 6)),
+                    OnNext(403, (1, 7)),
+                    OnNext(404, (2, 2)),
+                    OnNext(405, (2, 3)),
+                    OnNext(406, (2, 5)),
+                    OnNext(407, (2, 8)),
+                    OnCompleted<(int, int)>(408)
+                );
+
+            xs.Subscriptions
+                .Should()
+                .Equal(
+                    Subscribe(200, 400)
+                );
+        }
+
+        [Fact]
         public void Random_Ascending_WithCustomComparer()
         {
             var scheduler = new TestScheduler();
