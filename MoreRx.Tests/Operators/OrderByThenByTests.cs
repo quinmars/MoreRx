@@ -6,7 +6,7 @@ using Xunit;
 
 namespace MoreRx.Tests.Operators
 {
-    public class ThenByTests : ReactiveTest
+    public class OrderByThenByTests : ReactiveTest
     {
         public static readonly IComparer<int> CustomComparer = new CustomInverseIntComparer();
 
