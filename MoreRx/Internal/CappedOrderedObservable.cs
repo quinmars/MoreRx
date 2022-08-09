@@ -87,6 +87,7 @@ namespace MoreRx
                 onError: e =>
                 {
                     observer.OnError(e);
+                    disposable.Dispose();
                 },
                 onCompleted: () =>
                 {
