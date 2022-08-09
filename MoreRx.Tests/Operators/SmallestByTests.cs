@@ -278,5 +278,23 @@ namespace MoreRx.Tests.Operators
                     Subscribe(200, 400)
                 );
         }
+
+        [Fact]
+        public void Empty_Immediate()
+        {
+            var scheduler = new TestScheduler();
+
+            var xs = Observable.Empty<int>();
+
+            var res = scheduler.Start(() =>
+                xs.SmallestBy(x => x, 20)
+            );
+
+            res.Messages
+                .Should()
+                .Equal(
+                    OnCompleted<int>(200)
+                );
+        }
     }
 }
