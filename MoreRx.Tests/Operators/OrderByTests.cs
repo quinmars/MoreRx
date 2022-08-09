@@ -561,5 +561,23 @@ namespace MoreRx.Tests.Operators
                     OnCompleted<int>(200)
                 );
         }
+
+        [Fact]
+        public void Empty_Immediate_Descending()
+        {
+            var scheduler = new TestScheduler();
+
+            var xs = Observable.Empty<int>();
+
+            var res = scheduler.Start(() =>
+                xs.OrderByDescending(x => x)
+            );
+
+            res.Messages
+                .Should()
+                .Equal(
+                    OnCompleted<int>(200)
+                );
+        }
     }
 }
