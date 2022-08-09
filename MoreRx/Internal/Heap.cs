@@ -8,8 +8,8 @@ namespace MoreRx
     {
         private struct IndexedItem
         {
-            public int Index;
-            public T Value;
+            public int _index;
+            public T _value;
         }
 
         readonly List<IndexedItem> _list;
@@ -25,11 +25,15 @@ namespace MoreRx
 
         public void Push(T value)
         {
-            var item = new IndexedItem { Index = _nextIndex, Value = value };
+            var item = new IndexedItem { _index = _nextIndex, _value = value };
             if (_count == _list.Count)
+            {
                 _list.Add(item);
+            }
             else
+            {
                 _list[_count] = item;
+            }
 
             _nextIndex++;
             _count++;
@@ -47,27 +51,37 @@ namespace MoreRx
             _count--;
 
             if (_count > 0)
+            {
                 Heapify(0);
+            }
 
-            return v.Value;
+            return v._value;
         }
 
         public T Peak()
         {
-            return _list[0].Value;
+            return _list[0]._value;
         }
 
         void Heapify(int i)
         {
             while (true)
             {
-                int min = i;
+                var min = i;
                 if (Left(i) < _count && IsLesser(Left(i), min))
+                {
                     min = Left(i);
+                }
+
                 if (Right(i) < _count && IsLesser(Right(i), min))
+                {
                     min = Right(i);
+                }
+
                 if (min == i)
+                {
                     break;
+                }
 
                 Swap(i, min);
                 i = min;
@@ -89,10 +103,10 @@ namespace MoreRx
 
         private bool IsLesser(int a, int b)
         {
-            var v = _comparer.Compare(_list[a].Value, _list[b].Value);
+            var v = _comparer.Compare(_list[a]._value, _list[b]._value);
             if (v == 0)
             {
-                return _list[a].Index < _list[b].Index;
+                return _list[a]._index < _list[b]._index;
             }
             else
             {
@@ -102,9 +116,7 @@ namespace MoreRx
 
         private void Swap(int a, int b)
         {
-            var tmp = _list[a];
-            _list[a] = _list[b];
-            _list[b] = tmp;
+            (_list[b], _list[a]) = (_list[a], _list[b]);
         }
     }
 }
