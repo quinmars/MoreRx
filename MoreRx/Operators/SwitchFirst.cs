@@ -7,6 +7,14 @@ namespace MoreRx
 {
     public static partial class MoreObservable
     {
+        /// <summary>
+        /// Forwards the elements of the first incoming sequence. Only, when the inner observable has been completed,
+        /// the last received observable will be subscribed. Every other observable in-between will be dropped without
+        /// any subscription.
+        /// </summary>
+        /// <typeparam name="TSource">The element type of the inner sources and result observables.</typeparam>
+        /// <param name="source">The source observable.</param>
+        /// <returns>The new observable instance.</returns>
         public static IObservable<TSource> SwitchFirst<TSource>(this IObservable<IObservable<TSource>> source)
         {
             if (source is null)

@@ -8,7 +8,7 @@ namespace MoreRx
     public static partial class MoreObservable
     {
         /// <summary>
-        /// Forwards the elements of the source sequence until the cancellation gets canceled.
+        /// Forwards the elements of the source sequence until the cancellation token gets canceled.
         /// When the cancellation token was canceled the sequence will finish with a
         /// completion notification.
         /// </summary>
