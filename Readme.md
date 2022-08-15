@@ -7,9 +7,8 @@ This library contains a collection of operators, that are not important enough t
 The library currently comprises the following operators:
 
   - `Chunk`
-  - `DelayOff`
-  - `DelayOn`
-  - `OrderBy` and `ThenBy`
+  - `DelayOn` and `DelayOff`
+  - `OrderBy`, `LargestBy`, `SmallestBy`, and `ThenBy`
   - `Pairwise`
   - `SwitchFirst`
   - `TakeUntil` + `CancellationToken`
